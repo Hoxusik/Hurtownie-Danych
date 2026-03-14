@@ -1,0 +1,12 @@
+SELECT 
+NON EMPTY { [Measures].[sredni_wynik_z_matury] } ON COLUMNS, 
+NON EMPTY { 
+    FILTER(
+        (
+            [Dim Uczen].[Wiek].[Wiek].ALLMEMBERS * [Dim Uczen].[Imie Nazwisko].[Imie Nazwisko].ALLMEMBERS
+        ),
+        [Measures].[sredni_wynik_z_matury] > 0
+    )
+} 
+ON ROWS 
+FROM [Szkola30] 

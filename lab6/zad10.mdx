@@ -1,0 +1,12 @@
+SELECT 
+NON EMPTY { [Measures].[Wynik z Matury] } ON COLUMNS, 
+NON EMPTY { 
+    FILTER(
+        (
+            { [Dim Junk].[Ocena].[Ocena].&[2] } * [Dim Przedmiot].[Nazwa].[Nazwa].ALLMEMBERS * [Dim Uczen].[Imie Nazwisko].[Imie Nazwisko].ALLMEMBERS
+        ),
+        [Measures].[Wynik z Matury] > 0 AND [Measures].[Wynik z Matury] < 30
+    )
+} 
+ON ROWS
+FROM [Szkola30] 

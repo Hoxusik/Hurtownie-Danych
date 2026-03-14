@@ -1,0 +1,17 @@
+SELECT 
+NON EMPTY { [Measures].[nie_pisal_matury] } ON COLUMNS, 
+
+NON EMPTY { 
+
+    EXCEPT(
+        [ID Daty Matury].[Rok].[Rok].ALLMEMBERS, 
+        [ID Daty Matury].[Rok].[Rok].[Unknown]
+    ) * 
+    FILTER(
+        [Dim Klasa].[Nazwa].[Nazwa].ALLMEMBERS, 
+        LEFT([Dim Klasa].[Nazwa].CurrentMember.Name, 1) = "4"
+    )
+} 
+ON ROWS 
+
+FROM [Szkola30] 

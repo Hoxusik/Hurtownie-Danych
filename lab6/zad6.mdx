@@ -1,0 +1,4 @@
+ SELECT NON EMPTY { [Measures].[sredni_wynik_z_matury] } ON COLUMNS,
+ NON EMPTY { ([Dim Junk].[Frekwencja].[Frekwencja].ALLMEMBERS ) }
+ ON ROWS 
+ FROM [Szkola30] 

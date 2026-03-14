@@ -1,0 +1,18 @@
+SELECT 
+NON EMPTY { 
+    [Measures].[srednia_frekwencja], 
+    [Measures].[sredni_wynik_z_matury] 
+} ON COLUMNS, 
+
+NON EMPTY { 
+    (
+      EXCEPT(
+        [ID Daty Matury].[Rok].[Rok].ALLMEMBERS, 
+        [ID Daty Matury].[Rok].[Rok].[Unknown]
+      ) *
+        [Dim Junk].[Frekwencja].[Frekwencja].ALLMEMBERS
+      
+    ) 
+} 
+ON ROWS 
+FROM [Szkola30] 

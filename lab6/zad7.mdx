@@ -1,0 +1,12 @@
+SELECT 
+NON EMPTY { [Measures].[srednia_ocena_maturzysty] } ON COLUMNS, 
+NON EMPTY { 
+    (
+        [ID Roku Szkolnego].[Rok].[Rok].ALLMEMBERS * EXCEPT(
+            [ID Daty Matury].[Rok].[Rok].ALLMEMBERS, 
+            [ID Daty Matury].[Rok].[Rok].[Unknown]
+        )
+    ) 
+} 
+ON ROWS
+FROM [Szkola30] 

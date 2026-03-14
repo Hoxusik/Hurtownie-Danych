@@ -1,0 +1,11 @@
+SELECT 
+NON EMPTY { [Measures].[sredni_wynik_z_matury] } ON COLUMNS, 
+NON EMPTY { 
+    (
+      [Dim Przedmiot].[Nazwa].[Nazwa].ALLMEMBERS * EXCEPT(
+          [ID Daty Matury].[Rok].[Rok].ALLMEMBERS, 
+          [ID Daty Matury].[Rok].[Rok].[Unknown]
+      )
+    ) 
+} ON ROWS 
+FROM [Szkola30] 
